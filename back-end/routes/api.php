@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MedicalRecordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/medicalRecords/add', [MedicalRecordController::class, 'addMedicalRecords']);
+Route::put('/medicalRecords/{id}/edit', [MedicalRecordController::class, 'editMedicalRecords']);
+Route::get('/medicalRecords/{patient_id}/records', [MedicalRecordController::class, 'showMedicalRecords']);
