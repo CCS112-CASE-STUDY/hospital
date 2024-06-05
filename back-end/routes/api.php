@@ -32,4 +32,4 @@ Route::post('/patients', [PatientController::class, 'addPatient']);
 Route::put('/patients/{id}/edit', [PatientController::class, 'editPatient']);
 Route::delete('/patients/{id}/remove', [PatientController::class, 'deletePatient']);
 Route::get('/patients/{id}/view', [PatientController::class, 'viewPatient']);
-Route::get('/patients/list', [PatientController::class, 'patientList']);
+Route::get('/patients_list', [PatientController::class, 'patientList']);
