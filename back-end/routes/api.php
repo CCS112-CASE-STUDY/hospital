@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +25,3 @@ Route::post('/doctor/add', [DoctorController::class, 'addDoctor']);
 Route::put('/doctor/{doctorId}/edit', [DoctorController::class, 'editDoctor']);
 Route::delete('/doctor/{doctorId}/remove', [DoctorController::class, 'removeDoctor']);
 Route::get('/doctor/{email}', [UserController::class, 'displayDoctor']);
-
-//patient
-Route::post('/patients', [PatientController::class, 'addPatient']);
-Route::put('/patients/{id}/edit', [PatientController::class, 'editPatient']);
-Route::delete('/patients/{id}/remove', [PatientController::class, 'deletePatient']);
-Route::get('/patients/{id}/view', [PatientController::class, 'viewPatient']);
-Route::get('/patients/list', [PatientController::class, 'patientList']);
-
