@@ -8,34 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('patient', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->date('date_of_birth');
-            $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
+            $table->string('gender');
             $table->string('address');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('email');
             $table->text('emergency_contact');
             $table->text('medical_history');
             $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('patient');
+        Schema::dropIfExists('patients');
     }
 };
