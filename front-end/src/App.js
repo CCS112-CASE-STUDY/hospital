@@ -47,6 +47,16 @@ function App() {
           />
 
           <Route
+            path='/hospital/admin/manage_patient_records'
+            element={<ManagePatientRecords />}
+          />
+
+          <Route
+            path='/hospital/admin/manage_doctors'
+            element={<ManageDoctors />}
+          />
+
+          <Route
             path='/hospital/admin/view_appointments'
             element={<ViewAppoinments />}
           />
