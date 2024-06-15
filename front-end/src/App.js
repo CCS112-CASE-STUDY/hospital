@@ -6,6 +6,9 @@ import StaffPanel from './component/StaffPanel';
 import PatientRegistration from './component/PatientRegistration';
 import StaffRegistration from './component/StaffRegistration';
 import ManageUsers from './component/ManageUsers';
+import ViewAppoinments from './component/ViewAppointments';
+import BookAppointment from './component/BookAppointment';
+import ManageAppointments from './component/ManageAppointments';
 
 function App() {
   return (
@@ -60,6 +63,16 @@ function App() {
             element={<PatientMedicalRecords />}
           />
 
+          <Route 
+            path='/hospital/patient/manage_appointments'
+            element={<ManageAppointments />}
+          />
+
+          <Route
+            path='/hospital/patient/view_medical_records'
+            element={<PatientMedicalRecords />}
+          />
+
           {
             // doctor routes
           }
@@ -74,6 +87,11 @@ function App() {
             element={<ManageMedicalRecords />}
           />
 
+          <Route
+            path='/hospital/doctor/manage_appointments'
+            element={<ManageAppointments />}
+          />
+
           {
             // receptionist routes
           }
@@ -81,6 +99,11 @@ function App() {
           <Route
             path='/hospital/receptionist/panel'
             element={<StaffPanel />}
+          />
+
+          <Route
+            path='/hospital/receptionist/book_appointment'
+            element={<BookAppointment />}
           />
 
           {
