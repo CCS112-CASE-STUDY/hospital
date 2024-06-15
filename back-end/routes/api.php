@@ -20,6 +20,15 @@ use App\Http\Controllers\PatientController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();});
 
+// UserController
+Route::post('/user/add', [UserController::class, 'addUser']);
+Route::put('/user/{id}/edit', [UserController::class, 'updateUser']);
+Route::delete('/user/{id}/delete', [UserController::class, 'deleteUser']);
+Route::post('/user/login', [UserController::class, 'loginUser']);
+Route::get('user/patient/list', [UserController::class, 'getPatients']);
+Route::get('user/doctor/list', [UserController::class, 'getDoctors']);
+Route::get('user/receptionist/list', [UserController::class, 'getReceptionists']);
+
 // Doctor
 Route::get('/doctor_list', [DoctorController::class, 'doctorList']);
 Route::post('/doctor/add', [DoctorController::class, 'addDoctor']);
