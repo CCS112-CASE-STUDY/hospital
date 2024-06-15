@@ -2,61 +2,123 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Patient;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PatientController extends Controller
 {
-    public function addPatient(Request $request){
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+    public function addPatient(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'date_of_birth' => 'required|date',
-            'gender' => 'required|in:Male,Female,Other',
-            'address' => 'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email:rfc,dns'
+            'gender' => 'required|string|in:Male,Female,Other',
+            'address' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email:rfc,dns',
+            'emergency_contact' => 'required|string',
+            'medical_history' => 'required|string'
         ]);
 
-        $patient = Patient::create($request->all());
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ]);
+        }
 
-        return response()->json(['message' => 'Patient added successfully', 'data' => $patient], 201);
+        Patient::create($request->all());
+
+        return response()->json([
+            'status' => 201,
+            'message' => 'Patient added successfully'
+        ]);
     }
-    
-    public function editPatient(Request $request, $id){
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+
+    public function updatePatient(Request $request, $id)
+    {
+        $patient = Patient::find($id);
+
+        if (!$patient) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Patient not found'
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'date_of_birth' => 'required|date',
-            'gender' => 'required|in:Male,Female,Other',
-            'address' => 'required',
-            'phone' => 'required',
+            'gender' => 'required|string|in:Male,Female,Other',
+            'address' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email:rfc,dns',
+            'emergency_contact' => 'required|string',
+            'medical_history' => 'required|string'
         ]);
 
-        $patient = Patient::findOrFail($id);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ]);
+        }
+
         $patient->update($request->all());
 
-        return response()->json(['message' => 'Patient updated successfully', 'data' => $patient]);
-    }
-
-    public function deletePatient($id){
-        $patient = Patient::findOrFail($id);
-        $patient->delete();
-
-        return response()->json(['message' => 'Patient deleted successfully']);
-    }
-
-    public function viewPatient($id){
-        $patient = Patient::findOrFail($id);
-        return response()->json(['data' => $patient]);
-    }
-
-    public function patientList(){
-        $patients = Patient::all();
         return response()->json([
             'status' => 200,
-            'data' => $patients
+            'message' => 'Patient updated successfully'
         ]);
     }
 
+    public function deletePatient($id)
+    {
+        $patient = Patient::find($id);
+
+        if (!$patient) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Patient not found'
+            ]);
+        }
+
+        $patient->delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Patient detail deleted successfully'
+        ]);
+    }
+
+
+    public function showPatient(Request $request)
+    {
+        $patient = Patient::where('email', $request->email)->get();
+
+        if (!$patient) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Patient not found'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'patient' => $patient
+        ]);
+    }
+
+    public function getPatients()
+    {
+        $patients = Patient::all();
+
+        return response()->json([
+            'status' => 200,
+            'patients' => $patients
+        ]);
+    }
 }

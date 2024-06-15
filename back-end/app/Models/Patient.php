@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory;
+
+    protected $table = 'patients';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'first_name',
         'last_name',
@@ -17,8 +25,16 @@ class Patient extends Model
         'phone',
         'email',
         'emergency_contact',
-        'medical_history',
+        'medical_history'
     ];
-    protected $table = 'patient';
-}
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+}
