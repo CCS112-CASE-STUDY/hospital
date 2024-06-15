@@ -3,12 +3,19 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserLogin from './component/UserLogin';
 import StaffPanel from './component/StaffPanel';
+import PatientPanel from './component/PatientPanel';
 import PatientRegistration from './component/PatientRegistration';
 import StaffRegistration from './component/StaffRegistration';
 import ManageUsers from './component/ManageUsers';
+import ManagePatientRecords from './component/ManagePatientRecords';
+import PatientMedicalRecords from './component/PatientMedicalRecords';
+import ManageDoctors from './component/ManageDoctors';
 import ViewAppoinments from './component/ViewAppointments';
+import ViewMedicalRecords from './component/ViewMedicalRecords';
 import BookAppointment from './component/BookAppointment';
 import ManageAppointments from './component/ManageAppointments';
+import ManageMedicalRecords from './component/ManageMedicalRecords';
+import DoctorViewProfile from './component/DoctorViewProfile';
 
 function App() {
   return (
@@ -63,7 +70,7 @@ function App() {
             element={<PatientMedicalRecords />}
           />
 
-          <Route 
+          <Route
             path='/hospital/patient/manage_appointments'
             element={<ManageAppointments />}
           />
@@ -83,6 +90,16 @@ function App() {
           />
 
           <Route
+            path='/hospital/doctor/profile'
+            element={<DoctorViewProfile />}
+          />
+
+          <Route
+            path='/hospital/doctor/manage_patient_records'
+            element={<ManagePatientRecords />}
+          />
+
+          <Route
             path='/hospital/doctor/manage_medical_records'
             element={<ManageMedicalRecords />}
           />
@@ -99,6 +116,11 @@ function App() {
           <Route
             path='/hospital/receptionist/panel'
             element={<StaffPanel />}
+          />
+
+          <Route
+            path='/hospital/receptionist/manage_patient_records'
+            element={<ManagePatientRecords />}
           />
 
           <Route
