@@ -49,3 +49,9 @@ Route::post('/appointment/book', [AppointmentController::class, 'bookAppointment
 Route::get('/appointment/show', [AppointmentController::class, 'showAppointments']);
 Route::put('/appointment/{id}/edit', [AppointmentController::class, 'updateAppointment']);
 Route::put('/appointment/{id}/cancel', [AppointmentController::class, 'cancelAppointment']);
+
+// MedicalRecordController
+Route::get('/medicalRecord/list', [MedicalRecordController::class, 'getMedicalRecords']);
+Route::post('/medicalRecord/add', [MedicalRecordController::class, 'addMedicalRecord']);
+Route::put('/medicalRecord/{id}/edit', [MedicalRecordController::class, 'updateMedicalRecord']);
+Route::get('/medicalRecord/{patient_id}/show', [MedicalRecordController::class, 'showMedicalRecords']);
