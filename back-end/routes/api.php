@@ -32,19 +32,19 @@ Route::get('user/patient/list', [UserController::class, 'getPatients']);
 Route::get('user/doctor/list', [UserController::class, 'getDoctors']);
 Route::get('user/receptionist/list', [UserController::class, 'getReceptionists']);
 
-// Doctor
-Route::get('/doctor_list', [DoctorController::class, 'doctorList']);
-Route::post('/doctor/add', [DoctorController::class, 'addDoctor']);
-Route::put('/doctor/{doctorId}/edit', [DoctorController::class, 'editDoctor']);
-Route::delete('/doctor/{doctorId}/remove', [DoctorController::class, 'removeDoctor']);
-Route::get('/doctor/{email}', [UserController::class, 'displayDoctor']);
+// PatientController
+Route::post('/patient/add', [PatientController::class, 'addPatient']);
+Route::put('/patient/{id}/edit', [PatientController::class, 'updatePatient']);
+Route::delete('/patient/{id}/delete', [PatientController::class, 'deletePatient']);
+Route::get('/patient/show', [PatientController::class, 'showPatient']);
+Route::get('/patient/list', [PatientController::class, 'getPatients']);
 
-//patient
-Route::post('/patients', [PatientController::class, 'addPatient']);
-Route::put('/patients/{id}/edit', [PatientController::class, 'editPatient']);
-Route::delete('/patients/{id}/remove', [PatientController::class, 'deletePatient']);
-Route::get('/patients/{id}/view', [PatientController::class, 'viewPatient']);
-Route::get('/patients_list', [PatientController::class, 'patientList']);
+// DoctorController
+Route::post('/doctor/add', [DoctorController::class, 'addDoctor']);
+Route::put('/doctor/{id}/edit', [DoctorController::class, 'updateDoctor']);
+Route::delete('/doctor/{id}/delete', [DoctorController::class, 'deleteDoctor']);
+Route::get('/doctor/show', [DoctorController::class, 'showDoctor']);
+Route::get('/doctor/list', [DoctorController::class, 'getDoctors']);
 
 // AppointmentController
 Route::get('/appointment/list', [AppointmentController::class, 'listAppointments']);
