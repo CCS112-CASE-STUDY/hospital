@@ -36,6 +36,16 @@ function App() {
             element={<ManageUsers />}
           />
 
+          <Route
+            path='/hospital/admin/view_appointments'
+            element={<ViewAppoinments />}
+          />
+
+          <Route
+            path='/hospital/admin/view_medical_records'
+            element={<ViewMedicalRecords />}
+          />
+
           {
             // patient routes
           }
@@ -45,6 +55,11 @@ function App() {
             element={<PatientPanel />}
           />
 
+          <Route
+            path='/hospital/patient/view_medical_records'
+            element={<PatientMedicalRecords />}
+          />
+
           {
             // doctor routes
           }
@@ -52,6 +67,11 @@ function App() {
           <Route
             path='/hospital/doctor/panel'
             element={<StaffPanel />}
+          />
+
+          <Route
+            path='/hospital/doctor/manage_medical_records'
+            element={<ManageMedicalRecords />}
           />
 
           {
