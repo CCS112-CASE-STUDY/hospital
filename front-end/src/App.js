@@ -76,8 +76,8 @@ function App() {
           />
 
           <Route
-            path='/hospital/patient/view_medical_records'
-            element={<PatientMedicalRecords />}
+            path='/hospital/patient/book_appointment'
+            element={<BookAppointment />}
           />
 
           <Route
