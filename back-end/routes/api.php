@@ -42,3 +42,10 @@ Route::put('/patients/{id}/edit', [PatientController::class, 'editPatient']);
 Route::delete('/patients/{id}/remove', [PatientController::class, 'deletePatient']);
 Route::get('/patients/{id}/view', [PatientController::class, 'viewPatient']);
 Route::get('/patients_list', [PatientController::class, 'patientList']);
+
+// AppointmentController
+Route::get('/appointment/list', [AppointmentController::class, 'listAppointments']);
+Route::post('/appointment/book', [AppointmentController::class, 'bookAppointment']);
+Route::get('/appointment/show', [AppointmentController::class, 'showAppointments']);
+Route::put('/appointment/{id}/edit', [AppointmentController::class, 'updateAppointment']);
+Route::put('/appointment/{id}/cancel', [AppointmentController::class, 'cancelAppointment']);
